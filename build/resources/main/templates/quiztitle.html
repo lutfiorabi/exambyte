@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quizerstellung</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+<div class="main-content">
+    <h1>Quizerstellung</h1>
+
+    <form th:action="@{/quizerstellung/title}" method="post" th:object="${quizForm}">
+        <div class="form-group">
+            <label for="title">Der Titel des Tests:</label>
+            <input type="text" class="form-control" id="title" th:field="*{title}" />
+
+            <small class="text-danger mt-1" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Titel Error</small>
+        </div>
+        <div class="form-group">
+            <label for="startzeit">Startzeit des Tests</label>
+            <input type="datetime-local" class="form-control" id="startzeit" th:field="*{startzeit}">
+            <small class="text-danger mt-1" th:if="${#fields.hasErrors('startzeit')}" th:errors="*{startzeit}">Startzeit Error</small>
+        </div>
+        <div class="form-group">
+            <label for="endzeit">Endzeit des Tests</label>
+            <input type="datetime-local" class="form-control" id="endzeit" th:field="*{endzeit}">
+            <small class="text-danger mt-1" th:if="${#fields.hasErrors('endzeit')}" th:errors="*{endzeit}">Endzeit Error</small>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-1">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

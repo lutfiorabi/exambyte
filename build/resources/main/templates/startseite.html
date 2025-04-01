@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Startseite</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+    <div class="main-content">
+        <h1>Herzlich Willkommen, <span th:text="${name}">Otto</span>!</h1>
+        <div class="container mt-3">
+            <p>
+                Willkommen auf der Startseite von Exambyte! Hiermit können Sie als Organisator*in Tests erstellen, auf die Zulassung
+                der Studis einblicken uvm. Als Korrektor*in können Sie die Tests korrigieren und bewerten. Als Studi können Sie
+                die Tests bearbeiten und auf eine Übersicht Ihrer Tests schauen.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

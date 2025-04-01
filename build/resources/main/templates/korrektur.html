@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Korrektur</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+<div class="main-content">
+    <h1>Abgabe von <span th:text="${studentname}">Otto</span></h1>
+    <h2>Freitextantworten</h2>
+
+    <form th:action="@{'alle-abgaben/' + ${studentname} + '/abgabe=' + ${abgabeId}}" method="post">
+        <table class="table table-bordered" th:each="entry : ${freitextantwortenMitFragen}">
+            <thead >
+            <tr>
+                <th>Frage</th>
+                <th>Antwort</th>
+            </tr>
+            </thead>
+            <tbody >
+            <tr >
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                        <label class="form-label">Korrektur:</label>
+                        <input type="text"
+                               <!--- th:name="${'korrektur[' + ${entry.key} + ']'}" --->
+                               class="form-control mb-2" placeholder="Geben Sie Ihre Korrektur ein">
+
+                        <label class="form-label">Punkte:</label>
+                        <input type="number" class="form-control" min="0" max="10" placeholder="Punkte">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button th:action="" type="submit">Korrektur abschicken</button>
+    </form>
+
+</div>
+
+</body>
+</html>

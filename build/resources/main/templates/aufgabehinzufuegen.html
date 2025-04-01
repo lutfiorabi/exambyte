@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabe hinzufügen</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+
+<div class="main-content">
+  <h1>Aufgabeerstellung</h1>
+
+    <form th:action="@{'/quizansicht/' + ${title} + '/aufgabehinzufuegen/freitext'}" method="post" th:if="${isFreitext}" th:object="${freitextAufgabeForm}">
+        <div class="form-group">
+
+            <label for="freitextfrage">Aufgabe</label>
+            <input type="text" class="form-control" id="freitextfrage" name="frage" th:field="*{frage}" placeholder="Aufgabe">
+            <p><small class="text-danger mt-1" th:if="${#fields.hasErrors('frage')}" th:errors="*{frage}">Frage Error</small></p>
+
+            <label for="maximalPunkte">Maximale Punkte</label>
+          <input type="number" class="form-control" id="maximalPunkte" name="maximalPunkte" th:field="*{maximalPunkte}" placeholder="Maximale Punkte">
+            <p><small class="text-danger mt-1" th:if="${#fields.hasErrors('maximalPunkte')}" th:errors="*{maximalPunkte}">Frage Error</small></p>
+
+            <button class="mt-2 btn btn-primary" type="submit">Submit Quiz</button>
+        </div>
+    </form>
+
+    <form th:action="@{'/quizansicht/' + ${title} + '/aufgabehinzufuegen/multiple'}" method="post" th:unless="${isFreitext}" th:object="${multipleChoiceAufgabeForm}">
+        <div id="itemFields">
+            <!-- Question Label and Input -->
+            <div class="form-group mb-4">
+                <label for="multiplefrage" class="form-label">Frage:</label>
+                <input type="text" class="form-control" id="multiplefrage" th:field="*{frage}" placeholder="Geben Sie die Frage ein">
+                <small class="text-danger mt-1" th:if="${#fields.hasErrors('frage')}" th:errors="*{frage}">Frage Error</small>
+            </div>
+
+            <!-- Answer 1 -->
+            <div class="form-group mb-3">
+                <label for="item1" class="form-label">Antwort 1:</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="item1" name="richtigenAntworten" value="0" aria-label="Antwort 1 korrekt">
+                    </div>
+                    <input type="text" class="form-control" name="antworten" placeholder="Antwort 1">
+                </div>
+            </div>
+
+            <!-- Answer 2 -->
+            <div class="form-group mb-3">
+                <label for="item2" class="form-label">Antwort 2:</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="item2" name="richtigenAntworten" value="1" aria-label="Antwort 2 korrekt">
+                    </div>
+                    <input type="text" class="form-control" name="antworten" placeholder="Antwort 2">
+                </div>
+            </div>
+
+            <!-- Answer 3 -->
+            <div class="form-group mb-3">
+                <label for="item3" class="form-label">Antwort 3:</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="item3" name="richtigenAntworten" value="2" aria-label="Antwort 3 korrekt">
+                    </div>
+                    <input type="text" class="form-control" name="antworten" placeholder="Antwort 3">
+                </div>
+            </div>
+
+            <!-- Answer 4 -->
+            <div class="form-group mb-3">
+                <label for="item4" class="form-label">Antwort 4:</label>
+                <div class="input-group">
+                    <div class="input-group-text">
+                        <input type="checkbox" id="item4" name="richtigenAntworten" value="3" aria-label="Antwort 4 korrekt">
+                    </div>
+                    <input type="text" class="form-control" name="antworten" placeholder="Antwort 4">
+                </div>
+            </div>
+        </div>
+        <p>
+        <small class="text-danger" th:if="${#fields.hasErrors('richtigenAntworten')}" th:errors="*{richtigenAntworten}">Richtige Antwort Fehler</small>
+        </p>
+        <!-- Submit Button -->
+        <button class="btn btn-primary mt-4" type="submit">Submit Quiz</button>
+    </form>
+
+
+
+</div>
+</body>
+</html>

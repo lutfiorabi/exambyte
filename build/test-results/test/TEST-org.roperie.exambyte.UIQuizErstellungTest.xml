@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="org.roperie.exambyte.UIQuizErstellungTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2024-12-13T12:59:57" hostname="MacBookAir.fritz.box" time="0.679">
+  <properties/>
+  <testcase name="Der Button Quiz erstellen leitet den User zur richtigen Seite und die Seite ist erreichbar" classname="org.roperie.exambyte.UIQuizErstellungTest" time="0.673"/>
+  <testcase name="Die Erstellungsseite ist über /quizerstellung erreichbar" classname="org.roperie.exambyte.UIQuizErstellungTest" time="0.005"/>
+  <system-out><![CDATA[13:59:57.046 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [org.roperie.exambyte.UIQuizErstellungTest]: UIQuizErstellungTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+13:59:57.108 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration org.roperie.exambyte.ExamByteApplication for test class org.roperie.exambyte.UIQuizErstellungTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v3.3.5)
+
+2024-12-13T13:59:57.330+01:00  INFO 60169 --- [ExamByte] [    Test worker] o.roperie.exambyte.UIQuizErstellungTest  : Starting UIQuizErstellungTest using Java 21.0.5 with PID 60169 (started by rop in /Users/rop/PersonalProjects/ExamByte)
+2024-12-13T13:59:57.330+01:00  INFO 60169 --- [ExamByte] [    Test worker] o.roperie.exambyte.UIQuizErstellungTest  : No active profile set, falling back to 1 default profile: "default"
+2024-12-13T13:59:57.738+01:00  INFO 60169 --- [ExamByte] [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2024-12-13T13:59:57.738+01:00  INFO 60169 --- [ExamByte] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2024-12-13T13:59:57.739+01:00  INFO 60169 --- [ExamByte] [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 0 ms
+2024-12-13T13:59:57.756+01:00  INFO 60169 --- [ExamByte] [    Test worker] o.roperie.exambyte.UIQuizErstellungTest  : Started UIQuizErstellungTest in 0.598 seconds (process running for 1.14)
+]]></system-out>
+  <system-err><![CDATA[WARNING: A Java agent has been loaded dynamically (/Users/rop/.gradle/caches/modules-2/files-2.1/net.bytebuddy/byte-buddy-agent/1.14.19/154da3a65b4f4a909d3e5bdec55d1b2b4cbb6ce1/byte-buddy-agent-1.14.19.jar)
+WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+WARNING: Dynamic loading of agents will be disallowed by default in a future release
+]]></system-err>
+</testsuite>
