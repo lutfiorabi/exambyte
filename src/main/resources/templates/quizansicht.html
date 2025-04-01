@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabenübersicht</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+<div class="main-content">
+    <h1>Aufgabenübersicht</h1>
+    <h2>Quiz Title: <span th:text="${title}">title</span></h2>
+    <ul class="list-group">
+        <li th:each="aufgabe : ${aufgaben}" class="list-group-item">
+            <strong th:text="${aufgabe.frage}"></strong>
+            <span>(Maximale Punkte: <span th:text="${aufgabe.maximalPunktzahl}"></span>)</span>
+        </li>
+    </ul>
+    <p>Gesamtpunktzahl: <span th:text="${gesamtPunktzahl}">0.0</span></p>
+    <div class="d-flex gap-3">
+        <a th:href="@{'/quizansicht/' + ${title} + '/aufgabehinzufuegen/freitext'}" class="btn btn-primary">Neue Freitext Aufgabe erstellen</a>
+        <a th:href="@{'/quizansicht/' + ${title} + '/aufgabehinzufuegen/multiple'}" class="btn btn-primary">Neue multiple-choice Aufgabe erstellen</a>
+        <form th:action="@{'/quizansicht/' + ${title} + '/uebersicht'}" method="post">
+            <button type="submit" class="btn btn-danger">Quizerstellung beenden</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

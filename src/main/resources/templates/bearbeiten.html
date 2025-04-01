@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}">Title</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+<div class="main-content">
+    <h1>Quiz: <span th:text="${title}"></span></h1>
+    <form th:action="@{'/quiz/' + ${quizTitle} + '/submit'}" method="post" th:object="${abgabeForm}">
+        <ul class="list-group">
+            <!-- Loop through questions -->
+            <li th:each="aufgabe : ${quiz.aufgaben}" class="list-group-item mb-3">
+                <div>
+                    <strong>Frage:</strong>
+                    <p th:text="${aufgabe.frage}"></p>
+                </div>
+
+                <!-- Freitext Question -->
+                <div th:if="${aufgabe.isFreitext()}">
+                    <label th:for="'antwort_' + ${aufgabe.id}"><strong>Antwort:</strong></label>
+                    <input type="text" class="form-control"
+                           th:id="'antwort_' + ${aufgabe.id}"
+                           th:field="*{freitextAnswers[__${aufgabe.id}__]}"
+                           placeholder="Geben Sie Ihre Antwort ein">
+                </div>
+
+                <!-- Multiple Choice Question -->
+                <div th:if="${!aufgabe.isFreitext()}">
+                    <strong>Antwortmöglichkeiten:</strong>
+                    <ul>
+                        <li class="form-check">
+                            <label>
+                                <input type="checkbox"
+                                       th:name="'multipleAnswers[' + ${aufgabe.id} + '][]'"
+                                       th:id="'option_' + ${aufgabe.id} + '_0'"
+                                       th:value="0">
+                            </label>
+                            <label class="form-check-label"
+                                   th:for="'option_' + ${aufgabe.id} + '_0'"
+                                   th:text="${aufgabe.antworten[0]}"></label>
+                        </li>
+                        <li class="form-check">
+                            <label>
+                                <input type="checkbox"
+                                       th:name="'multipleAnswers[' + ${aufgabe.id} + '][]'"
+                                       th:id="'option_' + ${aufgabe.id} + '_1'"
+                                       th:value="1">
+                            </label>
+                            <label class="form-check-label"
+                                   th:for="'option_' + ${aufgabe.id} + '_1'"
+                                   th:text="${aufgabe.antworten[1]}"></label>
+                        </li>
+                        <li class="form-check">
+                            <label>
+                                <input type="checkbox"
+                                       th:name="'multipleAnswers[' + ${aufgabe.id} + '][]'"
+                                       th:id="'option_' + ${aufgabe.id} + '_2'"
+                                       th:value="2">
+                            </label>
+                            <label class="form-check-label"
+                                   th:for="'option_' + ${aufgabe.id} + '_2'"
+                                   th:text="${aufgabe.antworten[2]}"></label>
+                        </li>
+                        <li class="form-check">
+                            <label>
+                                <input type="checkbox"
+                                       th:name="'multipleAnswers[' + ${aufgabe.id} + '][]'"
+                                       th:id="'option_' + ${aufgabe.id} + '_3'"
+                                       th:value="3">
+                            </label>
+                            <label class="form-check-label"
+                                   th:for="'option_' + ${aufgabe.id} + '_3'"
+                                   th:text="${aufgabe.antworten[3]}"></label>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary mt-3">Antworten Abschicken</button>
+    </form>
+</div>
+</body>
+</html>

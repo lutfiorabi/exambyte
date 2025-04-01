@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Abgaben</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+    <div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+    <div class="main-content">
+        <h1>Übersicht aller Abgaben</h1>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Student*in</th>
+                    <th>QuizId</th>
+                    <th>Abgabetermin</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="abgabe : ${abgaben}">
+                    <td><a th:href="'alle-abgaben/' + ${abgabe.studentname} + '/abgabe=' + ${abgabe.abgabeId}">Abgabe von <span th:text="${abgabe.studentname}">Otto</span> </a></td>
+                    <td th:text="${abgabe.studentname}"></td>
+                    <td th:text="${abgabe.quizID}"></td>
+                    <td th:text="${abgabe.abgabezeit}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

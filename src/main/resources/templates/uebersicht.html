@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aufgabenübersicht</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+<div class="main-content">
+    <h1>Quizübersicht</h1>
+    <h2>Quiz Title: <span th:text="${title}">Titel</span></h2>
+    <ul class="list-group">
+        <li th:each="aufgabe : ${aufgaben}" class="list-group-item">
+            <div>
+                <strong>Frage:</strong> <span th:text="${aufgabe.frage}"></span>
+            </div>
+            <div th:if="${aufgabe.isFreitext() == false}">
+                <strong>Antworten:</strong>
+                <ul>
+                    <li th:each="antwort : ${aufgabe}">
+                        <span th:text="${aufgabe.antwortenAusgeben()}"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <strong>Maximale Punktzahl: </strong> <span th:text="${aufgabe.maximalPunktzahl}"></span>
+            </div>
+            <div style="display: flex; gap: 5px; align-items: center;">
+                <a th:href="@{'/quizansicht/' + ${title} + '/aufgabe/' + ${aufgabe.id} + '/edit'}" class="btn btn-warning">Bearbeiten</a>
+                <form th:action="@{/quizansicht/{title}/aufgabe/{aufgabeId}/delete(title=${title}, aufgabeId=${aufgabe.id})}" method="post">
+                    <button type="submit" class="btn btn-danger">Löschen</button>
+                </form>
+            </div>
+        </li>
+    </ul>
+    <p><strong>Gesamtpunktzahl: </strong> <span th:text="${gesamtPunktzahl}"></span></p>
+    <form th:action="@{/quizansicht/{title}/save(title=${title})}" method="post">
+        <button type="submit" class="btn btn-primary">Speichern</button>
+    </form>
+</div>
+
+</body>
+</html>

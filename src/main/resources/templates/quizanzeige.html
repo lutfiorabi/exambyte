@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" href="../static/css/sidebar.css" th:href="@{/css/sidebar.css}">
+</head>
+<body>
+
+<div th:replace="~{fragments/sidebar :: fragment}"></div>
+
+<div class="main-content">
+    <h1>Testanzeige</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Testnummer</th>
+            <th>aktueller Bearbeitungsstand</th>
+            <th>Punktzahl</th>
+            <th>bestanden</th>
+            <th>Startzeitpunkt</th>
+            <th>Endzeitpunkt</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="quiz : ${quizzes}">
+            <td>
+                <a th:href="'quiz/' + ${quiz.encodedTitle}"
+                   th:text="${quiz.title}"
+                   th:if="${quiz.isStartzeitBeforeAndisEndzeitAfter()}">Quiznummer</a>
+
+                <span th:unless="${quiz.isStartzeitBeforeAndisEndzeitAfter()}"
+                      th:text="'Verfügbar ab: ' + ${#temporals.format(quiz.startzeit, 'dd.MM.yyyy HH:mm')}
+                         + ' bis zum ' + ${#temporals.format(quiz.endzeit, 'dd.MM.yyyy HH:mm')}"
+                      class="text-muted"></span>
+            </td>
+            <td th:text="${quiz.bewertungsstand}">Bearbeitungsstand</td>
+            <td th:text="${quiz.maximalPunktzahl}">Punktzahl</td>
+            <td th:text="${quiz.bestanden}">Bestanden</td>
+            <td th:text="${#temporals.format(quiz.startzeit, 'dd.MM.yyyy HH:mm')}">Startzeitpunkt</td>
+            <td th:text="${#temporals.format(quiz.endzeit, 'dd.MM.yyyy HH:mm')}">Endzeitpunkt</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
