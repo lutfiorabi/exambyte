@@ -6,8 +6,8 @@ logging:
 
 spring:
   datasource:
-    password: iamgroot
-    username: rop
+    password: db-password
+    username: db-username
     url: jdbc:postgresql://localhost:5432/exambyte
   application:
     name: ExamByte
@@ -16,6 +16,6 @@ spring:
       client:
         registration:
           github:
-            client-id: ${CLIENT_ID}
-            client-secret: ${CLIENT_SECRET}
+            client-id: client-id-here
+            client-secret: client-secret-here
             scope: read:public_repo
